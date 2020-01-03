@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sdtbu.webapp.mapper.HighSchoolMapper">
+
+    <resultMap type="cn.edu.sdtbu.webapp.entity.HighSchool" id="HighSchoolMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="schoolName" column="school_name" jdbcType="VARCHAR"/>
+        <result property="schoolIntro" column="school_intro" jdbcType="VARCHAR"/>
+        <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+        <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+        <result property="createdBy" column="created_by" jdbcType="INTEGER"/>
+        <result property="websiteUrl" column="website_url" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--&lt;!&ndash;查询单个&ndash;&gt;-->
+    <!--<select id="selectHighSchoolById" resultMap="HighSchoolMap">-->
+    <!--    select-->
+    <!--      id, school_name, school_intro, gmt_create, gmt_modified, created_by, website_url-->
+    <!--    from high_school-->
+    <!--    where id = #{highScId}-->
+    <!--</select>-->
+
+    <!--查询全部-->
+    <select id="selectAllHighSchool" resultMap="HighSchoolMap">
+        select
+          id, school_name, school_intro, gmt_create, gmt_modified, created_by, website_url        from high_school
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="selectAllHighSchoolByLimit" resultMap="HighSchoolMap">
+        select
+          id, school_name, school_intro, gmt_create, gmt_modified, created_by, website_url
+        from high_school
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="selectHighSchoolByCondition" resultMap="HighSchoolMap">
+        select
+          id, school_name, school_intro, gmt_create, gmt_modified, created_by, website_url        from high_school
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="schoolName != null and schoolName != ''">
+                and school_name = #{schoolName}
+            </if>
+            <if test="schoolIntro != null and schoolIntro != ''">
+                and school_intro = #{schoolIntro}
+            </if>
+            <if test="gmtCreate != null">
+                and gmt_create = #{gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                and gmt_modified = #{gmtModified}
+            </if>
+            <if test="createdBy != null">
+                and created_by = #{createdBy}
+            </if>
+            <if test="websiteUrl != null and websiteUrl != ''">
+                and website_url = #{websiteUrl}
+            </if>
+        </where>
+    </select>
+
+    <!--&lt;!&ndash;新增所有列&ndash;&gt;-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="cn.edu.sdtbu.webapp.entity.HighSchool">
+        insert into high_school(
+        school_name, school_intro, gmt_create, gmt_modified, created_by, website_url)
+        values (#{schoolName}, #{schoolIntro}, #{gmtCreate}, #{gmtModified}, #{createdBy}, #{websiteUrl})
+    </insert>
+
+
+    <!--<insert id="insert" keyProperty="id"  parameterType="cn.edu.sdtbu.webapp.entity.HighSchool"  useGeneratedKeys="true">-->
+    <!--    insert into high_school(-->
+    <!--    <set>-->
+    <!--        <if test="schoolName != null and schoolName != ''">-->
+    <!--            school_name,-->
+    <!--        </if>-->
+    <!--        <if test="schoolIntro != null and schoolIntro != ''">-->
+    <!--            school_intro,-->
+    <!--        </if>-->
+    <!--        <if test="gmtCreate != null">-->
+    <!--            gmt_create,-->
+    <!--        </if>-->
+    <!--        <if test="gmtModified != null">-->
+    <!--            gmt_modified,-->
+    <!--        </if>-->
+    <!--        <if test="createdBy != null">-->
+    <!--            created_by,-->
+    <!--        </if>-->
+    <!--        <if test="websiteUrl != null and websiteUrl != ''">-->
+    <!--            website_url,-->
+    <!--        </if>-->
+    <!--    </set>)-->
+    <!--    values (-->
+    <!--        <set>-->
+    <!--            <if test="schoolName != null and schoolName != ''">-->
+    <!--                #{highSchool.schoolName},-->
+    <!--            </if>-->
+    <!--            <if test="schoolIntro != null and schoolIntro != ''">-->
+    <!--               #{highSchool.schoolIntro},-->
+    <!--            </if>-->
+    <!--            <if test="gmtCreate != null">-->
+    <!--                #{highSchool.gmtCreate},-->
+    <!--            </if>-->
+    <!--            <if test="gmtModified != null">-->
+    <!--               #{highSchool.gmtModified},-->
+    <!--            </if>-->
+    <!--            <if test="createdBy != null">-->
+    <!--                #{highSchool.createdBy},-->
+    <!--            </if>-->
+    <!--            <if test="websiteUrl != null and websiteUrl != ''">-->
+    <!--                #{highSchool.websiteUrl},-->
+    <!--            </if>-->
+    <!--        </set>-->
+    <!--    )-->
+    <!--</insert>-->
+    <!--通过主键修改数据-->
+    <update id="update">
+        update high_school
+        <set>
+            <if test="schoolName != null and schoolName != ''">
+                school_name = #{schoolName},
+            </if>
+            <if test="schoolIntro != null and schoolIntro != ''">
+                school_intro = #{schoolIntro},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified},
+            </if>
+            <if test="createdBy != null">
+                created_by = #{createdBy},
+            </if>
+            <if test="websiteUrl != null and websiteUrl != ''">
+                website_url = #{websiteUrl},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteHighSchoolById">
+        delete from high_school where id = #{id}
+    </delete>
+
+<!-- -->
+
+    <!--查询全部g高中信息-->
+    <select id="selectAllCollage" resultType="cn.edu.sdtbu.webapp.entity.HighSchool">
+        select * from  high_school
+        <where>
+            <if test="schoolName != null  and schoolName != '' "> and school_name LIKE '%${schoolName}%'</if>
+        </where>
+    </select>
+
+    <!--通过id查询高中信息-->
+    <select id="selectHighSchoolById" resultType="cn.edu.sdtbu.webapp.entity.HighSchool">
+        select * from  high_school WHERE id=#{highScId}
+    </select>
+
+    <!--通过id查询学校分数-->
+    <select id="selectSchoolScoresById" resultType="cn.edu.sdtbu.webapp.entity.SchoolScore">
+        select school_score.*,high_school.school_name from  school_score,high_school
+        WHERE school_score.school_id=#{highScId} and school_score.school_id = high_school.id
+    </select>
+
+    <!--通过id查询学校上级文件/政策-->
+    <select id="selectSchoolDocumentById" resultType="cn.edu.sdtbu.webapp.entity.SchoolDocument">
+        select school_document.*,high_school.school_name from  school_document,high_school
+        WHERE school_document.school_id=#{highScId} and school_document.school_id = high_school.id
+    </select>
+
+</mapper>

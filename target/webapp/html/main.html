@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <title>首页</title>
+    <link href="http://localhost:63342/webapp/src/main/webapp/css/main/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://localhost:63342/webapp/src/main/webapp/libs/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link href="http://localhost:63342/webapp/src/main/webapp/libs/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <header class="page-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+                <a class="text-muted" href="#">Subscribe</a>
+            </div>
+            <div class="col-4 text-center">
+                <a class="page-header-logo text-dark" href="#">Large</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="btn btn-sm btn-outline-primary" href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in mr-2"></i>立即登录</a>
+            </div>
+        </div>
+    </header>
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="loginModalTitle">登录<small style="font-size: 0.5rem">没有账号？<a href="#" class="text-decoration-none">立即注册</a></small></h3>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <label for="username" class="col-form-label">账号:</label>
+                            <input type="text" class="form-control" name="username" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">密码:</label>
+                            <input type="password" name="password" class="form-control" id="password">
+                        </div>
+                        <div class="row justify-content-between" style="margin: 0 10px">
+
+                            <div class="btn-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">学生</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">管理员</label>
+                                </div>
+                            </div>
+
+                            <div class="mt-2">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input"  name="remeberMe" type="checkbox" id="remeberMe">
+                                        <label class="form-check-label" for="remeberMe">
+                                            记住我
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-outline-primary btn-block" type="button" onclick="loginValidate()">现在登录</button>
+
+                        </div>
+
+                    </form>
+                </div>
+
+                <!--<div class="modal-footer">-->
+                <!--    &lt;!&ndash;<button type="button" class="btn btn-link" data-dismiss="modal">稍后</button>&ndash;&gt;-->
+                <!--    <button class="btn btn-outline-primary btn-block" type="button" onclick="loginValidate()">现在登录</button>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    <!--二级导航栏-->
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <a class="p-2 nav-link  active" href="#">学校简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+        </nav>
+    </div>
+</div>
+
+
+<main role="main" class="container">
+    <div class="row">
+
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 font-italic border-bottom">
+                样例功能清单
+            </h3>
+            <table id="table">
+                <thead>
+                <tr>
+                    <th data-field="id">id</th>
+                    <th data-field="username">username</th>
+                    <th data-field="password">password</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <aside class="col-md-4">
+
+            <div class="p-4">
+                <h4 class="font-italic">Archives</h4>
+                <ol class="list-unstyled mb-0">
+                    <li><a href="#">March 2014</a></li>
+                    <li><a href="#">February 2014</a></li>
+                    <li><a href="#">January 2014</a></li>
+                    <li><a href="#">December 2013</a></li>
+                    <li><a href="#">November 2013</a></li>
+                </ol>
+            </div>
+        </aside>
+    </div>
+
+
+</main><!-- /.container -->
+<script src="../libs/jQuery-3.4.1.min.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="../libs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="http://localhost:63342/webapp/src/main/webapp/libs/popper.min.js"></script>
+<script src="http://localhost:63342/webapp/src/main/webapp/js/common/app-js.js"></script>
+<!--<script src="http://localhost:63342/webapp/src/main/webapp/js/index/index.js"></script>-->
+<script type="text/javascript">
+
+    function loginValidate() {
+
+        var username = $.common.trim($("input[name='username']").val());
+        var password = $.common.trim($("input[name='password']").val());
+        var remeberMe = $("input[name='remeberMe']").is(':checked');
+        var isStudent = $("#inlineRadio1").is(':checked');
+        var isAdmin = $("#inlineRadio2").is(':checked');
+
+        alert(remeberMe+"##"+inlineRadio1+"##"+inlineRadio2)
+    }
+
+
+</script>
+</body>
+</html>

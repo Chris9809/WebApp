@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--开启注解驱动-->
+    <mvc:annotation-driven/>
+
+    <mvc:default-servlet-handler/>
+    <!--开启注解扫描，只扫描Controller注解-->
+    <context:component-scan base-package="cn.edu.sdtbu.webapp">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--配置的视图解析器对象-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--WEB-INF下存放jsp文件的包-->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--multipart批量上传配置-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--文件大小-->
+        <property name="maxUploadSize" value="540000000"/>
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="maxInMemorySize" value="40960000" />
+    </bean>
+
+    <!--&lt;!&ndash;异常处理器&ndash;&gt;-->
+    <!--<bean id="myExpectionResolver" class="cn.edu.sdtbu.webapp.config.exception.MyExpectionResolver"/>-->
+
+    <!--&lt;!&ndash;拦截器配置&ndash;&gt;-->
+    <!--<mvc:interceptors>-->
+    <!--    <mvc:interceptor>-->
+    <!--        &lt;!&ndash;&lt;!&ndash;拦截所有&ndash;&gt;&ndash;&gt;-->
+    <!--        &lt;!&ndash;<mvc:mapping path="/**"/>&ndash;&gt;-->
+    <!--        &lt;!&ndash;&lt;!&ndash;不拦截的页面&ndash;&gt;&ndash;&gt;-->
+    <!--        &lt;!&ndash;<mvc:exclude-mapping path="/" />&ndash;&gt;-->
+    <!--        <mvc:mapping path="/login"/>-->
+    <!--        -->
+    <!--        &lt;!&ndash;&lt;!&ndash; 不拦截静态资源 &ndash;&gt;&ndash;&gt;-->
+    <!--        &lt;!&ndash;<mvc:exclude-mapping path="/css/**"/>&ndash;&gt;-->
+    <!--        &lt;!&ndash;<mvc:exclude-mapping path="/js/**"/>&ndash;&gt;-->
+    <!--        &lt;!&ndash;<mvc:exclude-mapping path="/libs/**"/>&ndash;&gt;-->
+    <!--        &lt;!&ndash;<mvc:exclude-mapping path="/images/**"/>&ndash;&gt;-->
+    <!--        <bean class="cn.edu.sdtbu.webapp.config.interceptor.LoginInterceptor"></bean>-->
+    <!--    </mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+
+    <!-- 静态资源放行 -->
+    <!--<mvc:resources location="/css/" mapping="/css/**"/>-->
+    <!--<mvc:resources location="/js/" mapping="/js/**"/>-->
+    <!--<mvc:resources location="/images/" mapping="/images/**"/>-->
+    <!--<mvc:resources location="/libs/" mapping="/libs/**"/>-->
+</beans>

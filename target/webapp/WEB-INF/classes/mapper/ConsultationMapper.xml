@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sdtbu.webapp.mapper.ConsultationMapper">
+
+
+    <!--查询HighSchool表最后三条数据-->
+    <select id="queryHighScLastThreeScNames" resultType="cn.edu.sdtbu.webapp.entity.HighSchool">
+         select * from high_school t ORDER BY id DESC limit 3
+    </select>
+    <!--查询Collage表最后三条数据-->
+    <select id="queryCollageLastThreeScNames" resultType="cn.edu.sdtbu.webapp.entity.Collage">
+        select * from collage t ORDER BY id DESC limit 3
+    </select>
+    <!--查询HighSchool表最后三条数据-->
+    <select id="selectHighScById" resultType="cn.edu.sdtbu.webapp.entity.HighSchool">
+        select * from high_school where id=#{highScId}
+    </select>
+    <!--查询HighSchool表最后三条数据-->
+    <select id="queryCollageLById" resultType="cn.edu.sdtbu.webapp.entity.Collage">
+        select * from collage where id=#{collageId}
+    </select>
+    <!--查询全部大学信息-->
+    <select id="selectAllCollage" resultType="cn.edu.sdtbu.webapp.entity.Collage">
+        select * from (
+          select id,(select title from collage_title where collage_title.id = collage.id)title,
+          (select name from province where province.id = province_id)province_name,
+          type,collage_name,city,website_url from collage
+        ) collage
+        <where>
+            <if test="collageName != null  and collageName != '' "> and collage_name LIKE '%${collageName}%'</if>
+            <if test="city != null  and city != '' "> and city LIKE '%${city}%'</if>
+            <if test="title != null  and title != '' "> and title LIKE '%${title}%'</if>
+            <if test="provinceName != null  and provinceName != '' "> and province_name LIKE '%${provinceName}%'</if>
+        </where>
+    </select>
+
+</mapper>

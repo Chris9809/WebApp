@@ -1,0 +1,10 @@
+名师介绍：Id name content img
+课程体系：id name content
+中考地区：id name
+中学：id name 分数线 政策 属于哪个地区外键
+学区：id name 属于哪个中学外键
+各省份：name
+各学校：name 学校类型：（双一流 重点等）官网  介绍     属于什么省份外键
+录取信息：id 分数线 录取人数 属于哪个学校外键
+网课：id name 阶段 授课教师 上课时间
+学生：id name sex school grade parentName phone wechatID

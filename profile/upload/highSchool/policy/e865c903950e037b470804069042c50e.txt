@@ -1,0 +1,6 @@
+https://blog.csdn.net/qq_18661793/article/details/51860717
+http://how2j.cn/k/search-engine/search-engine-intro/1672.html #how2Jluncene 学习
+https://blog.csdn.net/weixin_42633131/article/details/82873731 #Lucene介绍与使用[详细]
+https://blog.csdn.net/u013087513/article/details/75570563 #JAVAWEB开发之Lucene详解——Lucene入门及使用场景、全文检索、索引CRUD、优化索引库、分词器、高亮、相关度排序、各种查询
+https://mvnrepository.com/search?q=lucene Maven #lucene
+https://blog.csdn.net/weixin_41889524/article/details/88988256  #Java实现word转HTML

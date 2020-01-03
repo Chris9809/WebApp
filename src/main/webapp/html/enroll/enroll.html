@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--head给出的不要变动，必须在联网状态下才能正常显示样式-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <title>样例和模板</title>
+    <link href="../../css/index/index.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--css样式全部统一，所有页面必须带上下列样式-->
+    <style>
+        /* stylelint-disable selector-list-comma-newline-after */
+        .blog-header {
+            line-height: 1;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .blog-header-logo {
+            font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+            font-size: 2.25rem;
+        }
+
+        .blog-header-logo:hover {
+            text-decoration: none;
+        }
+
+        h1, h2, h3, h4, h5, h6 ,label{
+            font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        }
+
+        .display-4 {
+            font-size: 2.5rem;
+        }
+        @media (min-width: 768px) {
+            .display-4 {
+                font-size: 3rem;
+            }
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-scroller .nav-link {
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+            font-size: .875rem;
+        }
+
+        .card-img-right {
+            height: 100%;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .flex-auto {
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+        }
+
+        .h-250 { height: 250px; }
+        @media (min-width: 768px) {
+            .h-md-250 { height: 250px; }
+        }
+
+        /*
+         * Blog name and description
+         */
+        .blog-title {
+            margin-bottom: 0;
+            font-size: 2rem;
+            font-weight: 400;
+        }
+        .blog-description {
+            font-size: 1.1rem;
+            color: #999;
+        }
+
+        @media (min-width: 40em) {
+            .blog-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Pagination */
+        .blog-pagination {
+            margin-bottom: 4rem;
+        }
+        .blog-pagination > .btn {
+            border-radius: 2rem;
+        }
+
+        /*
+         * Blog posts
+         */
+        .blog-post {
+            margin-bottom: 4rem;
+        }
+        .blog-post-title {
+            margin-bottom: .25rem;
+            font-size: 2.5rem;
+        }
+        .blog-post-meta {
+            margin-bottom: 1.25rem;
+            color: #999;
+        }
+
+
+        .footer {
+            padding: 2.5rem 0;
+            color: #999;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-top: .05rem solid #e5e5e5;
+        }
+        .footer p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<!--导航栏-->
+<div class="container">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+                <a class="text-muted" href="#">Subscribe</a>
+            </div>
+            <div class="col-4 text-center">
+                <a class="blog-header-logo text-dark" href="#">Large</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="btn btn-sm btn-outline-primary" href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in mr-2"></i>立即登录</a>
+            </div>
+        </div>
+    </header>
+    <!--二级导航栏-->
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <a class="p-2 nav-link  active" href="#">学校简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+            <a class="p-2 nav-link text-muted" href="#">名师简介</a>
+        </nav>
+    </div>
+</div>
+<main role="main" class="container" style="min-height: 600px">
+    <h4 class="text-center font-weight-bold mt-5 mb-3">初中课程</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">初中文科</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">初中英语、语文各个阶段和知识方面一网打尽</h6>
+
+                    <div class="my-3">
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                    </div>
+                    <a href="#" class="card-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;查看更多</a>
+                    <a href="#" class="card-link"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;&nbsp;立即报名</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">初中理科</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">家长辅导孩子数学、科学吃力？选择e学慕课！</h6>
+
+                    <div class="my-3">
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                    </div>
+                    <a href="#" class="card-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;查看更多</a>
+                    <a href="#" class="card-link"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;&nbsp;立即报名</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="text-center font-weight-bold mt-5 mb-3">高中课程</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">高中文科</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">政史地+语文、英语，文科不再拖后腿！</h6>
+
+                    <div class="my-3">
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                    </div>
+                    <a href="#" class="card-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;查看更多</a>
+                    <a href="#" class="card-link"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;&nbsp;立即报名</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">高中理科</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">高中理科也可以学的这么轻松，学霸都在e学慕课补课！</h6>
+                    <div class="my-3">
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                        <li class="list-unstyled"><a class="text-truncate" style="font-size: 15px" href="#">Some quick example text to build on the card</a></li>
+                    </div>
+                    <a href="#" class="card-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;查看更多</a>
+                    <a href="#" class="card-link"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;&nbsp;立即报名</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main><!-- /.container -->
+<footer class="footer">
+    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.15.0/esm/popper.min.js"></script>v
+</body>
+</html>
+

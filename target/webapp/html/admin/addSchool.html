@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <title>首页</title>
+    <link href="../../css/main/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../libs/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../libs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link href="../../libs/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="../../libs/editor.md-master/css/editormd.css" rel="stylesheet">
+    <link href="../../libs/bootstrap-fileinput-master/css/fileinput.min.css" rel="stylesheet">
+    <link href="../../libs/bootstrap-fileinput-master/themes/explorer/theme.min.css" rel="stylesheet">
+    <style>
+        .footer {
+            padding: 2.5rem 0;
+            color: #999;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-top: .05rem solid #e5e5e5;
+        }
+        .footer p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+                <a class="text-muted" href="#">eLearingMooc</a>
+            </div>
+            <div class="col-4 text-center">
+                <a class="blog-header-logo text-dark" href="#">e学慕课</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="btn btn-sm btn-outline-primary" href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in mr-2"></i>立即登录</a>
+            </div>
+        </div>
+    </header>
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalTitle">登录</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <label for="username" class="col-form-label">账号:</label>
+                            <input type="text" class="form-control" name="username" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">密码:</label>
+                            <input type="password" name="password" class="form-control" id="password">
+                        </div>
+                        <div class="mx-auto mt-2">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input"  name="remeberMe" type="checkbox" id="remeberMe">
+                                    <label class="form-check-label" for="remeberMe">
+                                        记住我
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">稍后</button>
+                    <button class="btn btn-outline-primary w-25" type="button" onclick="loginValidate()">现在登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--二级导航栏-->
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <a class="p-2 text-muted" href="#">学校简介</a>
+            <a class="p-2 text-muted" href="#">名师介绍</a>
+            <a class="p-2 text-muted" href="#">课程体系</a>
+            <a class="p-2 text-muted" href="#">中高考资讯</a>
+            <a class="p-2 text-muted" href="#">课程报名</a>
+            <a class="p-2 text-muted" href="#">网上课堂</a>
+        </nav>
+    </div>
+</div>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="blog-post-title text-center mb-4">添加学校</h2>
+            <p class="blog-post-meta text-center">添加学校，输入名称和简介<a class="fa fa-link text-decoration-none ml-2" href="">帮助和支持</a></p>
+            <div class="form">
+                <form>
+                    <h4 class="pb-2 mt-4">
+                        学校基本信息
+                    </h4>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="schoolName">学校名称</label>
+                            <input type="text" class="form-control" id="schoolName" placeholder="输入学校的完整校名" required>
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <label for="webSiteUrl">学校官网</label>
+                            <input type="text" class="form-control" id="webSiteUrl" placeholder="输入学校官方网站域名">
+                        </div>
+                    </div>
+
+                    <!--大学或者高中选择radio-->
+                    <div class="btn-group mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" onclick="switchForm('highSchoolForm')" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                            <label class="form-check-label" for="inlineRadio1">高中</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" onclick="switchForm('highSchoolPolicy')" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                            <label class="form-check-label" for="inlineRadio2">大学</label>
+                        </div>
+                    </div>
+
+                    <!--高中信息详情表单-->
+                    <div id="highSchoolForm">
+                        <h4 class="pb-2 mt-4">
+                            文件上传
+                        </h4>
+                        <div class="row">
+                            <!--上级文件-->
+                            <div id="highSchoolDocument" class="mb-3 col-sm-6">
+                                <label for="highSchoolDocumentUpload">上级文件上传</label>
+                                <input type="file" id="highSchoolDocumentUpload" class="file" multiple>
+                            </div>
+                            <!--政策-->
+                            <div id="highSchoolPolicy"  class="mb-3 col-sm-6">
+                                <label for="highSchoolPolicyUpload">政策文件上传</label>
+                                <input type="file" id="highSchoolPolicyUpload" class="file" multiple>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--高中信息详情表单-->
+                    <div id="collageForm">
+                        <label for="schoolTypeCheckBoxes1">学校类型</label>
+                        <div class="form-row pl-4" id="schoolTypeCheckBoxes1">
+                            <div class="custom-control custom-checkbox col-sm-1 mb-3  ">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">985工程</label>
+                            </div>
+                            <div class="custom-control custom-checkbox col-sm-1">
+                                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                <label class="custom-control-label" for="customCheck2">211工程</label>
+                            </div>
+                            <div class="custom-control custom-checkbox col-sm-1">
+                                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                <label class="custom-control-label" for="customCheck3">双一流</label>
+                            </div>
+                            </div>
+                        <div class="form-row pl-4" id="schoolTypeCheckBoxes2">
+                            <div class="custom-control custom-checkbox col-sm-1">
+                                <input type="checkbox" class="custom-control-input" id="customCheck4">
+                                <label class="custom-control-label" for="customCheck4">重点大学</label>
+                            </div>
+                            <div class="custom-control custom-checkbox col-sm-1">
+                                <input type="checkbox" class="custom-control-input" id="customCheck5">
+                                <label class="custom-control-label" for="customCheck5">普通本科</label>
+                            </div>
+                            <div class="custom-control custom-checkbox col-sm-1">
+                                <input type="checkbox" class="custom-control-input" id="customCheck6">
+                                <label class="custom-control-label" for="customCheck6">专科</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <h4 class="pb-2 mt-4">
+                学校简介
+            </h4>
+            <div id="editor" class="my-3 pt-3">
+                <!--编辑面板-->
+                <div id="editormd">
+            <textarea style="display:none;"  class="col-lg-12"></textarea>
+                </div>
+                <!--发布文章按钮-->
+                <div id="editor-submit" class="row">
+                    <button id="submitBtn" onclick="submit()" type="button" class="btn btn-primary btn-block">上传描述</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main><!-- /.container -->
+<footer class="footer">
+    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+<script src="../../libs/jQuery-3.4.1.min.js"></script>
+<script src="../../libs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../libs/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../libs/editor.md-master/editormd.js"></script>
+<script src="../../libs/bootstrap-fileinput-master/js/fileinput.min.js"></script>
+<script src="../../libs/bootstrap-fileinput-master/js/locales/zh.js"></script>
+<script src="../../libs/bootstrap-fileinput-master/themes/explorer/theme.min.js"></script>
+<script src="../../libs/popper.min.js"></script>
+<script src="../../js/common/app-js.js"></script>
+<script type="text/javascript">
+    var testEditor;
+    var submitDescType = '';//默认提交的类型是高中描述（hs/cg）
+
+    /*加载时启动*/
+    $(function() {
+
+        //隐藏高中或者大学的表单
+        hideForms();
+        //初始化编辑器
+        initEdiotrMd();
+
+    });
+
+    function hideForms() {
+        $("#highSchoolForm").hide();
+        $("#collageForm").hide();
+    }
+
+    /**
+     * 切换编辑的学校类型：高中/大学
+     */
+    function switchForm(div){
+        //如果选择的是高中
+        if(div=='highSchoolForm'){
+            submitDescType='hs',
+            $("#highSchoolForm").show();
+            $("#collageForm").hide();
+        }else{
+            submitDescType='cg',
+            $("#highSchoolForm").hide();
+            $("#collageForm").show();
+        }
+    }
+
+    /**
+     * bootstrap-fileinput 插件配置
+     * 上级文件上传回调函数
+     */
+    $("#highSchoolDocumentUpload").fileinput({
+        language:'zh',
+        theme: "explorer",
+        hideThumbnailContent: true,
+        uploadUrl: '#',
+        pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
+        overwriteInitial: false,
+        initialPreviewAsData: true,
+        uploadAsync:false,
+        maxFileCount: 10,
+        layoutTemplates:{
+            actionDelete:" " ,
+            actionUpload:" ",
+            actionZoom:" "
+        },
+        previewFileIcon: '<i class="fa fa-file"></i>',
+        allowedPreviewTypes: null,
+        previewFileIconSettings: {
+            'docx': '<i class="fa fa-file-word-o text-primary"></i>',
+            'doc': '<i class="fa fa-file-word-o text-secondary"></i>'
+        }
+    }).on('filebatchuploadsuccess',function(event, data,previewId, index) {
+        if(data.response.code==0){
+            filePathArray.push(data.response.data);
+            $('#modal').modal('show')
+            $('#modalBody').html('<span><i class="fa fa-spinner fa-spin"></i>&nbsp;'+data.response.msg+'</span>');
+            //保存上传的文件地址
+            ajaxSubmitFileName();
+
+        }
+    });
+
+    /**
+     * bootstrap-fileinput 插件配置
+     * 政策文件上传回调函数
+     */
+    $("#highSchoolPolicyUpload").fileinput({
+        language:'zh',
+        theme: "explorer",
+        hideThumbnailContent: true,
+        uploadUrl: '#',
+        pdfRendererUrl: 'https://plugins.krajee.com/pdfjs/web/viewer.html',
+        overwriteInitial: false,
+        initialPreviewAsData: true,
+        uploadAsync:false,
+        maxFileCount: 10,
+        previewFileIcon: '<i class="fa fa-file"></i>',
+        allowedPreviewTypes: null,
+        layoutTemplates:{
+          actionDelete:" " ,
+          actionUpload:" ",
+            actionZoom:" "
+        },
+        previewFileIconSettings: {
+            'docx': '<i class="fa fa-file-word-o text-primary"></i>',
+            'doc': '<i class="fa fa-file-word-o text-secondary"></i>'
+        }
+    }).on('filebatchuploadsuccess',function(event, data,previewId, index) {
+        if(data.response.code==0){
+            filePathArray.push(data.response.data);
+            $('#modal').modal('show')
+            $('#modalBody').html('<span><i class="fa fa-spinner fa-spin"></i>&nbsp;'+data.response.msg+'</span>');
+            //保存上传的文件地址
+            ajaxSubmitFileName();
+
+        }
+    });
+    /**
+     * 保存上传的文件名称
+     */
+    function ajaxSubmitFileName() {
+        $.ajax({
+            type: "POST",
+            url:"../record/check",
+            dataType: 'json',
+            // data:{
+            //     filePathArray:filePathArray
+            // },
+            traditional:true,
+            success: function(result) {
+                if(result.code == 0){
+                    data = result.data;
+                }else {
+                }
+            },
+            error: function(error) {
+                return false;
+            }
+        });
+    }
+
+
+    /*初始化EditorMd文本编辑器插件*/
+    function initEdiotrMd(){
+        testEditor = editormd("editormd", {
+            width: "100%",
+            height: 600,
+            path    : "../../libs/editor.md-master/lib/",
+            theme : "default",
+            previewTheme : "default",
+            editorTheme : "default",
+            codeFold : true,
+            saveHTMLToTextarea : true,    // 保存 HTML 到 Textarea
+            searchReplace : true,
+            htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+            emoji : true,
+            taskList : true,
+            tocm            : true,         // Using [TOCM]
+            tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart : true,             // 开启流程图支持，默认关闭
+            sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "/content/upload/",
+            onload : function() {
+                console.log('onload', this);
+            },
+            onfullscreen : function() {
+                this.editor.css("border-radius", 0).css("z-index", 120);
+            },
+            onfullscreenExit : function() {
+                this.editor.css({
+                    zIndex : 10,
+                    border : "none",
+                    "border-radius" : "5px"
+                });
+                this.resize();
+            }
+        });
+    }
+
+    function submit(){
+        var formData = new FormData();
+
+        var content = testEditor.getHTML();
+        var schoolName = $("#schoolName").val();
+        var webSiteUrl = $("#webSiteUrl").val();
+        var url;
+        formData.append("content",content);
+        formData.append("schoolName",schoolName);
+        formData.append("webSiteUrl",webSiteUrl);
+
+        if(submitDescType==''){
+            alert("您还没有选择上传咨询的类型:大学/高中");
+        }else if(submitDescType=="hs"){
+            url='/highSchool/highSchool/';
+
+            //上级文件
+            var highSchoolDocumentFiles = $('#highSchoolDocumentUpload')[0].files[0];
+            //政策文件
+            var highSchoolPolicyFiles = $('#highSchoolPolicyUpload')[0].files[0];
+
+            formData.append('highSchoolDocumentFiles',highSchoolDocumentFiles);
+            formData.append('highSchoolPolicyFiles',highSchoolPolicyFiles);
+
+            ajaxSubmit(url,formData);
+        }else{
+            url='/collage/collage/';
+            doms = [];
+            for(var i=1;i<=6;i++){
+                dom = 'customCheck'+i;
+                var domValue = $('#'+dom).is(':checked');
+                doms.push(domValue);
+            }
+            //
+            formData.append("schoolTitles",doms.join(","));
+            ajaxSubmit(url,formData);
+        }
+    }
+
+    function ajaxSubmit(url,formData) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            processData : false,
+            contentType : false,
+            data:formData ,
+            dataType:'json',
+            cache: false,
+            success: function(result){
+                if(result.code==0){
+                    alert("添加学校成功！！")
+                }
+            },error:function (result) {
+                alert("添加学校失败，请检查网络状况或联系管理员！")
+            }
+        });
+    }
+</script>
+</body>
+</html>

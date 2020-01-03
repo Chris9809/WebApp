@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sdtbu.webapp.mapper.CourseMapper">
+
+    <resultMap type="cn.edu.sdtbu.webapp.entity.Course" id="CourseMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="courseName" column="course_name" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="grade" column="grade" jdbcType="VARCHAR"/>
+        <result property="year" column="year" jdbcType="VARCHAR"/>
+        <result property="courseTime" column="course_time" jdbcType="VARCHAR"/>
+        <result property="teacherId" column="teacher_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="selectCourseById" resultMap="CourseMap">
+        select
+          id, course_name, type, grade, year, course_time, teacher_id
+        from course
+        where id = #{id}
+    </select>
+
+    <!--查询全部-->
+    <select id="selectAllCourse" resultMap="CourseMap">
+        select
+          id, course_name, type, grade, year, course_time, teacher_id        from course
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="selectAllCourseByLimit" resultMap="CourseMap">
+        select
+          id, course_name, type, grade, year, course_time, teacher_id
+        from course
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="selectCourseByCondition" resultMap="CourseMap">
+        select
+          id, course_name, type, grade, year, course_time, teacher_id        from course
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="courseName != null and courseName != ''">
+                and course_name = #{courseName}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="grade != null and grade != ''">
+                and grade = #{grade}
+            </if>
+            <if test="year != null and year != ''">
+                and year = #{year}
+            </if>
+            <if test="courseTime != null and courseTime != ''">
+                and course_time = #{courseTime}
+            </if>
+            <if test="teacherId != null">
+                and teacher_id = #{teacherId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into course(course_name, type, grade, year, course_time, teacher_id)
+        values (#{course.courseName}, #{course.type}, #{course.grade}, #{course.year}, #{course.courseTime}, #{course.teacherId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update course
+        <set>
+            <if test="courseName != null and courseName != ''">
+                course_name = #{courseName},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="grade != null and grade != ''">
+                grade = #{grade},
+            </if>
+            <if test="year != null and year != ''">
+                year = #{year},
+            </if>
+            <if test="courseTime != null and courseTime != ''">
+                course_time = #{courseTime},
+            </if>
+            <if test="teacherId != null">
+                teacher_id = #{teacherId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteCourseById">
+        delete from course where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sdtbu.webapp.mapper.TeacherMapper">
+
+    <resultMap type="cn.edu.sdtbu.webapp.entity.Teacher" id="TeacherMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="teacherName" column="teacher_name" jdbcType="VARCHAR"/>
+        <result property="photoPath" column="photo_path" jdbcType="VARCHAR"/>
+        <result property="teacherIntro" column="teacher_intro" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="selectTeacherById" resultMap="TeacherMap">
+        select
+          id, teacher_name, photo_path, teacher_intro
+        from teacher
+        where id = #{id}
+    </select>
+
+    <!--查询全部-->
+    <select id="selectAllTeacher" resultMap="TeacherMap">
+        select
+          id, teacher_name, photo_path, teacher_intro from teacher
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="selectAllTeacherByLimit" resultMap="TeacherMap">
+        select
+          id, teacher_name, photo_path, teacher_intro
+        from teacher
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="selectTeacherByCondition" resultMap="TeacherMap">
+        select
+          id, teacher_name, photo_path, teacher_intro        from teacher
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="teacherName != null and teacherName != ''">
+                and teacher_name = #{teacherName}
+            </if>
+            <if test="photoPath != null and photoPath != ''">
+                and photo_path = #{photoPath}
+            </if>
+            <if test="teacherIntro != null and teacherIntro != ''">
+                and teacher_intro = #{teacherIntro}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into teacher(teacher_name, photo_path, teacher_intro)
+        values (#{teacherName}, #{photoPath}, #{teacherIntro})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update teacher
+        <set>
+            <if test="teacherName != null and teacherName != ''">
+                teacher_name = #{teacherName},
+            </if>
+            <if test="photoPath != null and photoPath != ''">
+                photo_path = #{photoPath},
+            </if>
+            <if test="teacherIntro != null and teacherIntro != ''">
+                teacher_intro = #{teacherIntro},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteTeacherById">
+        delete from teacher where id = #{id}
+    </delete>
+
+</mapper>

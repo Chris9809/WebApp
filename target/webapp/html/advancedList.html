@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <title>首页</title>
+    <link href="../css/main/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../libs/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../libs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link href="../libs/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="../libs/editor.md-master/css/editormd.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <a class="p-2 text-muted" href="#">World</a>
+            <a class="p-2 text-muted" href="#">U.S.</a>
+            <a class="p-2 text-muted" href="#">Technology</a>
+            <a class="p-2 text-muted" href="#">Design</a>
+            <a class="p-2 text-muted" href="#">Culture</a>
+        </nav>
+    </div>
+</div>
+
+<main role="main" class="container">
+    <div class="row">
+
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 font-italic border-bottom">
+                样例功能清单
+            </h3>
+
+            <table id="table" class="table-borderless table-hover table-striped" style="padding-top:20px">
+            </table>
+        </div>
+
+        <aside class="col-md-4">
+            <div class="p-4">
+                <h4 class="font-italic">Archives</h4>
+                <ol class="list-unstyled mb-0">
+                    <li><a href="#">March 2014</a></li>
+                    <li><a href="#">February 2014</a></li>
+                    <li><a href="#">January 2014</a></li>
+                    <li><a href="#">December 2013</a></li>
+                    <li><a href="#">November 2013</a></li>
+                </ol>
+            </div>
+        </aside>
+    </div>
+
+
+</main><!-- /.container -->
+
+<script src="../libs/jQuery-3.4.1.min.js"></script>
+<script src="../libs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../libs/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js"></script>
+<script src="../libs/editor.md-master/editormd.js"></script>
+<script src="../libs/popper.min.js"></script>
+<script src="../js/common/app-js.js"></script>
+<script type="text/javascript">
+    //网页前缀
+    var prefix = constant.CTX;
+    var selections = [];
+
+    //控件
+    var $table = $("#table");
+
+    /**
+     * @author: yelihu
+     * @time: 2019年12月26日17:59:02
+     */
+    $(function(){
+        initTable();
+
+        //行点击监听事件
+        $table.on('check.bs.table uncheck.bs.table ' +
+            'check-all.bs.table uncheck-all.bs.table',
+            function () {
+                selections = getIdSelections()
+            });
+        $table.on('all.bs.table', function (e, name, args) {
+            console.log(name, args)
+        })
+    });
+
+
+    //字段名称和对应ajax结果里面的value
+    var columns=[{
+        field: 'id',
+        title: 'Item ID'
+    }, {
+        field: 'username',
+        title: '用户名'
+    }, {
+        field: 'password',
+        title: '密码'
+    },{
+        title: '操作',
+        align: 'center',
+        //按钮和事件 注意：row是一个字符串不是一个json对象，必须传值row.id
+        formatter: function(value, row, index) {
+            var btns = [];
+
+            var editBtn=  '<a id="edit" href="javascript:void(0)" onclick="onEditBtnClicked(\'' + row.id +'\')" title="Like"> <i class="fa fa-edit"></i> </a> ';
+            var removeBtn =  '<a id="remove" href="javascript:void(0)" onclick="onRemoveBtnClicked(\'' + row.id +'\')" title="Like"> <i class="fa fa-trash"></i> </a> ';
+
+            //加入控件组
+            btns.push(editBtn);
+            btns.push(removeBtn);
+
+            //转为字符串html
+            return btns.join('');
+        }
+    }
+    ];
+
+    /**编辑按钮点击事件*/
+    function onEditBtnClicked(id){
+        alert('You click edit action, row: ' + id);
+    }
+
+    /**删除按钮点击事件*/
+    function onRemoveBtnClicked(id){
+        alert('You click remove action, row: ' + id);
+    }
+
+
+    function initTable() {
+        $('#table').bootstrapTable({
+            columns: columns,
+            locale:"zh-CN",
+            class:"table table-striped table-hover table-borderless",
+            url:prefix+"user/advancedList",                                  // 请求后台的URL（*）
+            contentType: "application/x-www-form-urlencoded",   // 编码类型
+            method: 'get',
+            cache: false,                               // cache disabled
+            toolbar: "toolbar",
+            sortable: true,                                     // 是否启用排序
+            sortStable: true,                                   // 设置为 true 将获得稳定的排序
+            pagination: true,
+            sidePagination: "server",
+            pageSize : 3,//每页大小
+            pageList : [3, 6, 9, 12],//可以选择每页大小
+            striped: false,
+            escape: false,
+            showFooter: false,
+            search: true,
+            showSearch: true,
+            showPageGo: true,
+            showRefresh: true,
+            showColumns: true,
+            showToggle: true,
+            showExport: false,
+            responseHandler:function (res) {
+                return res;
+            },
+            queryParams: function (params) {
+                var curParams = {
+                    // 传递参数查询参数
+                    pageSize:       params.limit,
+                    pageNum:        params.offset / params.limit + 1,
+                    searchValue:    params.search,
+                    orderByColumn:  params.sort,
+                    isAsc:          params.order
+                };
+                return curParams;
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

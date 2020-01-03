@@ -1,0 +1,219 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style-type: none;
+}
+a{
+	text-decoration: none;
+}
+.top{
+	width: 100%;
+}
+.header{
+	width: 100%;
+	height: 176px;
+	background-color: #005d8c;
+}
+.headtop{
+	width: 100%;
+	height: 134px;
+	border-bottom: 2px solid #f80;
+	margin: 0 auto;
+}
+.headfirst{
+	width: 1002px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+.logo{
+	margin-top: 10px;
+}
+.search{
+	width: 260px;
+	height: 134px;.
+position: relative;
+}
+.search_img{
+	position: absolute;
+	z-index: 1;
+}
+.search_box{
+	position: absolute;
+	z-index: 2;
+	top: 80px;
+	width: 260px;
+	height: 38px;
+}
+.search_box div{
+	position: absolute;
+	left: 12px;
+	top: 11px;
+}
+.search_box input{
+	box-sizing: border-box;
+	width: 70%;
+	height: 38px;
+	border: 0;
+	float: left;
+	padding-left: 40px;
+	font-family: "微软雅黑";
+	font-size: 12px;
+	line-height: 38px;
+}
+.search_box button{
+	width: 30%;
+	height: 38px;
+	box-sizing: border-box;
+	border: 0;
+	float: right;
+	background: #0075b3;
+	color: #f80;
+	cursor: pointer;
+}
+.search_box button:hover{
+	background: #055bd0;
+}
+.navi ul{
+	width: 1002px;
+	height: 40px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+.navi ul li{
+	width: 92px;
+	height: 40px;
+	line-height: 40px;
+	background-position: left center;
+	background-repeat: no-repeat;
+
+}
+.navi ul li:first-of-type{
+	width: 64px;
+}
+.navi a{
+	color: white;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	display: block;
+	text-align: right;
+}
+.navi a:hover{
+	color: black;
+}
+.navi1{
+	background-image: url(../nav1.png);
+}
+.navi1:hover{
+	background-image: url(../nav1h.png);
+}
+.navi2{
+	background-image: url(../nav2.png);
+}
+.navi2:hover{
+	background-image: url(../nav2h.png);
+}
+.navi3{
+	background-image: url(../nav3.png);
+}
+.navi3:hover{
+	background-image: url(../nav3h.png);
+}
+.navi4{
+	background-image: url(../nav4.png);
+}
+.navi4:hover{
+	background-image: url(../nav4h.png);
+}
+.navi5{
+	background-image: url(../nav5.png);
+}
+.navi5:hover{
+	background-image: url(../nav5h.png);
+}
+.navi6{
+	background-image: url(../nav6.png);
+}
+.navi6:hover{
+	background-image: url(../nav6h.png);
+}
+.navi7{
+	background-image: url(../nav7.png);
+}
+.navi7:hover{
+	background-image: url(../nav7h.png);
+}
+.subbanner{
+	width: 100%;
+	top: 40px;
+	position: relative;
+	overflow: hidden;
+}
+.subbanner div{
+	display: block;
+}
+.bd ul{
+	width: 100%;
+	height: 250px;
+	padding: 0;
+
+}
+.body{
+	width: 100%;
+	position: relative;
+	background-size: cover;
+	padding: 250px 0 0 0;
+}
+.title{
+	text-align:center
+}
+.main{
+	padding: 50px 0 0 0;
+}
+.lable{
+	bottom: 20px;
+	position: relative;
+	padding: 0 0 0px 250px;
+}
+.title2{
+	position: relative;
+}
+.article{
+	margin: auto;
+	width: 950px;
+	text-align: center;
+}
+.ending{
+	margin: auto;
+	position: relative;
+}
+.spinner{
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	padding: 35px 0 0 0;
+}
+.select{
+	width: 100%;
+	padding: 6.25rem;
+	margin: auto;
+	text-align: center;
+}
+.xiaohui{
+	right: 200px;
+	position: absolute;
+
+}
+.xiaohui img{
+	width: 350px;
+	height: 350px;
+	right: 200px;
+}
+.entirety{
+	margin: auto;
+	width: 1200px;
+
+}

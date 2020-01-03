@@ -1,0 +1,167 @@
+@charset "utf-8";
+
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+body {
+
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+
+a {
+	text-decoration: none;
+	color: #545454;
+}
+
+a:hover {
+	color: #545454;
+	color: #0075a1;
+}
+
+img {
+	border: none;
+	vertical-align: middle;
+}
+
+ul,
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/*p{ text-indent:2em;}*/
+ul,
+li,
+dl,
+dd,
+dt {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.bodyimg{
+
+	background: url(images/head/timg2.jpg) repeat-y #f8feff;
+}
+.mtop {
+	padding-top: 10px;
+}
+
+.mrgt {
+	margin-right: 20px;
+}
+
+.mlft {
+	margin-left: 8px;
+}
+
+.main {
+	width: 1200px;
+	height: auto;
+	overflow: hidden;
+	margin: 0 auto;
+	clear: both;
+	background: #fff;
+}
+
+/*表格样式*/
+.tabletit {
+	background: #e9f9fd;
+	font-weight: bold;
+	color: #0075a1;
+	text-align: center;
+}
+
+.zt01 {
+	color: #f95e01;
+}
+
+.zt02 {
+	color: #156dff;
+}
+
+
+/* 右侧微博微信 */
+/* 页头 */
+.header {
+	width: 100%;
+	height: 306px;
+	background: url(images/head/timg.png) no-repeat center;
+	clear: both;
+	position: relative;
+}
+
+.zyqh {
+	width: 180px;
+	height: 30px;
+	position: absolute;
+	right: 350px;
+	top: 50px;
+}
+
+.zyqh a {
+	padding: 0 10px;
+	color: #0075a1;
+}
+
+.zyqh a:hover {
+	padding: 0 10px;
+	color: #fff;
+}
+
+/*导航nav*/
+.navo {
+	width: 1000px;
+	position: relative;
+	z-index: 10;
+	margin: 0 auto;
+	height: 50px;
+	background: #1c649f;
+	font-size: 18px;
+}
+
+.navo li {
+	float: left;
+}
+
+.navo li a {
+	float: left;
+	width: 157px;
+	z-index: 10;
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	text-align: center;
+}
+.nav_lev2 {
+	background: #fff none repeat;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	display: none;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 50px;
+	width: 1100px;
+	height: 400px;
+}
+
+.nav_lev2 .shadow {
+	bottom: auto;
+	top: -10px;
+}
+
+.nav .hover .nav_lev2 {
+	display: block;
+}
